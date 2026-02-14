@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Be My Valentine ❤️</title>
+    <title>For HER_NAME ❤️</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            text-align: center;
+            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #ffdde1;
+            text-align: center;
+            background: linear-gradient(45deg, #ff4e8a, #ff99ac);
             overflow: hidden;
+            color: white;
         }
 
         h1 {
@@ -16,47 +18,77 @@
             font-size: 28px;
         }
 
-        .btn {
+        button {
             padding: 12px 25px;
             font-size: 18px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            margin: 20px;
+            margin-top: 20px;
+            background-color: white;
+            color: #ff4e8a;
+            font-weight: bold;
         }
 
-        #yes {
-            background-color: #ff4d6d;
-            color: white;
-        }
-
-        #no {
-            background-color: #444;
-            color: white;
+        .heart {
             position: absolute;
+            font-size: 20px;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+
+        #message {
+            display: none;
+            margin-top: 50px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Will you be my Valentine? ❤️</h1>
+<h1>Hi HER_NAME ❤️</h1>
 
-    <button class="btn" id="yes" onclick="yesClick()">Yes 💘</button>
-    <button class="btn" id="no" onmouseover="moveButton()">No 🙈</button>
+<button onclick="showMessage()">Open Your Surprise 💌</button>
 
-    <script>
-        function yesClick() {
-            document.body.innerHTML = "<h1>Yayyy!! ❤️ I love you so much 😍</h1>";
-        }
+<div id="message">
+    <h2>You make my world brighter every single day 🌎✨</h2>
+    <p>
+        From the moment we met, you became the most beautiful part of my life.
+        Your smile, your laugh, your energy… everything about you is special.
+    </p>
 
-        function moveButton() {
-            var button = document.getElementById("no");
-            var x = Math.random() * (window.innerWidth - 100);
-            var y = Math.random() * (window.innerHeight - 50);
-            button.style.left = x + "px";
-            button.style.top = y + "px";
-        }
-    </script>
+    <h2>Will you be my Valentine? 💘</h2>
+    <button onclick="yesClick()">YES 💍❤️</button>
+</div>
+
+<script>
+    function showMessage() {
+        document.getElementById("message").style.display = "block";
+    }
+
+    function yesClick() {
+        document.body.innerHTML = "<h1>Yayyy 😍❤️ I’m the luckiest person alive!</h1>";
+    }
+
+    function createHearts() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = Math.random() * 20 + 15 + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 6000);
+    }
+
+    setInterval(createHearts, 300);
+</script>
 
 </body>
 </html>
